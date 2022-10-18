@@ -27,7 +27,7 @@
  * - Tetap gunakan NetworkError untuk membawa nilai error pada Promise
  */
 
- class NetworkError extends Error {
+  class NetworkError extends Error {
     constructor(message) {
       super(message);
       this.name = 'NetworkError';
