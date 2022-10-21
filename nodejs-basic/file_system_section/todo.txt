@@ -1,0 +1,2 @@
+example file:
+this is example file will try to access using javascript
