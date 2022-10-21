@@ -6,20 +6,24 @@
  */
 const fs = require('fs');
 const { resolve } = require('path');
-const destinationFile = resolve(__dirname, 'input.txt');
+const inputFile = resolve(__dirname, 'input.txt');
+const outputFile = resolve(__dirname, 'output.txt');
 
-const readbleStream = fs.createReadStream(destinationFile, {
+const readbleStream = fs.createReadStream(inputFile, {
     highWaterMark: 15
 });
 
+const writableStream = fs.createWriteStream(outputFile);
+
 readbleStream.on('readable', () => {
     try {
-        process.stdout.write(`${readbleStream.read()}\n`);
+        writableStream.write(`${readbleStream.read()}\n`);
     } catch (error) {
-        // catch the error when the chunk cannot be read
+        console.log(error);
     };
 });
 
 readbleStream.on('end', () => {
- 
+    writableStream.end();
 });
+
